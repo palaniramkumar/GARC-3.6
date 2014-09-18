@@ -212,6 +212,7 @@ function Report(){
     curreport=Report;
     $('#status').show();
     curpage=Report;
+
     var url="AjaxPages/Reports.jsp"
     $.ajax({
             type: "POST",
@@ -320,7 +321,10 @@ function cumulativeAttendance(){
     curreport=cumulativeAttendance;
     var semester=$("#semester").val();
     var section=  $("#section").val();
-    var month=$("#month").val();
+    $('#from_cum_date1').datepicker({dateFormat: 'dd/mm/yy'});
+    $('#to_cum_date1').datepicker({dateFormat: 'dd/mm/yy'});
+    var from=$("#from_cum_date1").val();
+    var to=$("#to_cum_date1").val();
     //alert(section)
      $('#status').show();
      $('#status').html("<center><img src='../images/loading.gif'/>Loading Cumulative Report. This May take Long Time</center>");
@@ -330,7 +334,7 @@ function cumulativeAttendance(){
     $.ajax({
             type: "POST",
             url: url,
-            data:"action=cumulative&month="+month+"&semester="+semester+"&section="+section,
+            data:"action=cumulative&from="+from+"&to="+to+"&semester="+semester+"&section="+section,
             success: function(msg){
                    $('#cumulative').html(msg);
                    $('button').button();

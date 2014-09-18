@@ -162,16 +162,21 @@ function Report(){
 function cumulativeAttendance(){
     curreport=cumulativeAttendance;
     var semester=$("#semester").val();
-    var section=$("#section").val();
-    var month=$("#month").val();
+    var section=  $("#section").val();
+    $('#from_cum_date1').datepicker({dateFormat: 'dd/mm/yy'});
+    $('#to_cum_date1').datepicker({dateFormat: 'dd/mm/yy'});
+    var from=$("#from_cum_date1").val();
+    var to=$("#to_cum_date1").val();
+    //alert(section)
      $('#status').show();
-     $('#status').html("<center><img src='../images/loading.gif'/>Loading Cumulative Report</center>");
+     $('#status').html("<center><img src='../images/loading.gif'/>Loading Cumulative Report. This May take Long Time</center>");
     curpage=cumulativeAttendance;
-    url="../Faculty/AjaxPages/Reports.jsp"
+    url="../Faculty/AjaxPages/Reports.jsp";
+    //alert("dude")
     $.ajax({
             type: "POST",
             url: url,
-            data:"action=cumulative&month="+month+"&semester="+semester+"&section="+section,
+            data:"action=cumulative&from="+from+"&to="+to+"&semester="+semester+"&section="+section,
             success: function(msg){
                    $('#cumulative').html(msg);
                    $(".popup").click(function () {
@@ -290,14 +295,14 @@ function exportXL( divid) {
         var hiddenField = document.createElement("input");
         hiddenField.setAttribute("type", "hidden");
         hiddenField.setAttribute("name", "data");
-        hiddenField.setAttribute("value", $('#'+divid+" .scrollTableContainer").html());
+        hiddenField.setAttribute("value", "<table>"+$('#'+divid+" .scrollTableContainer").html()+"</table>");
 
         form.appendChild(hiddenField);
-
 
     document.body.appendChild(form);    // Not entirely sure if this is necessary
     form.submit();
 }
+
 function nav_dayAttendance(link){
     var date=$('#date1').val();
     var date_split=date.split("/");

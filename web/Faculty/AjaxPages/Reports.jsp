@@ -640,23 +640,19 @@ else if(request.getParameter("action").equals("cumulative")){
 //out.print(sql);
 String monthsubstr="";
 int t=0;
-if(!request.getParameter("month").equals("0"))
-    monthsubstr=" and month(`date`)="+request.getParameter("month");
+String outTxt="Over All";
+if(!(request.getParameter("from").equals("") && request.getParameter("to").equals(""))){
+    monthsubstr=" and `date` BETWEEN STR_TO_DATE('"+request.getParameter("from")+"','%d/%m/%Y') AND STR_TO_DATE('"+request.getParameter("from")+"','%d/%m/%Y') ";
+    outTxt="Between "+request.getParameter("from") + "& "+request.getParameter("to");
+}
 
 String sql="select a.subject_id,count(distinct(concat(date,hour))) from assign_staff a left join attendance at "+
             "on  a.semester=at.semester and a.section=at.section and a.subject_id=at.subject_id "+monthsubstr+
             " where  a.section like '"+section+"' and  a.semester="+semester+" and a. subject_id not like 'X%' group by subject_id" ;
 //out.print(sql);
 ResultSet rs=statement.executeQuery(sql);
-if(Integer.parseInt(request.getParameter("month"))>0) {
 
-        out.print("<h1 align='center'  style=\"margin:0px;padding:0px;\">Monthly Attendance Report for ");
-        String mont[]={"January","Febraury","March","April","May","June","July","August","September","October","November","December"} ;
-        out.print(mont[Integer.parseInt(request.getParameter("month"))-1]) ;
-        out.print("</h1><h3  style=\"margin:0px;padding:0px;\">Year: " +((Integer.parseInt(request.getParameter("semester"))+1)/2) +"&nbsp;&nbsp;&nbsp;&nbsp;Section: "+((char)(Integer.parseInt(request.getParameter("section"))+'A'-1))+"</h3><br/>");
-     }
-else
-        out.print("<h1 align='center' style=\"margin:0px;padding:0px;\">Cumulative Attendance Report </h1><h3 style=\"margin:0px;padding:0px;\">Year: " +((Integer.parseInt(semester)+1)/2) +"&nbsp;&nbsp;&nbsp;&nbsp;Section: "+section+"</h3><br/>");
+out.print("<h1 align='center' style=\"margin:0px;padding:0px;\">Cumulative Attendance Report ("+ outTxt +")</h1><h3 style=\"margin:0px;padding:0px;\">Year: " +((Integer.parseInt(semester)+1)/2) +"&nbsp;&nbsp;&nbsp;&nbsp;Section: "+section+"</h3><br/>");
 %>
 
   <div align="right">
@@ -1089,8 +1085,9 @@ ResultSet rs=statement.executeQuery(sql);
 
     </ul>
     <div id="tabs-1">
-        <p align="right">Month:
-        <select id="month" onchange="cumulativeAttendance()">
+        
+        
+            From Date :  <input type="text" id="from_cum_date1" value=""> To Date:  <input type="text" id="to_cum_date1" value=""> <button onclick="cumulativeAttendance()">Filter</button> 
             <option value="0">Overall</option>
             <option value="1">January</option>
             <option value="2">February</option>
@@ -1105,7 +1102,7 @@ ResultSet rs=statement.executeQuery(sql);
             <option value="11">November</option>
             <option value="12">December</option>
 
-        </select>
+       
 <button onclick="exportXL('tabs-1')">Export</button> 
     </p>
 
