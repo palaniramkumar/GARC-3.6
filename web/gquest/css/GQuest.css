@@ -1,0 +1,46 @@
+   /*
+    Copyright (C) 2010  Palani Ramkumar.K
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  */
+/* 
+    Document   : GQuest
+    Created on : Jun 8, 2010, 8:17:51 PM
+    Author     : Ram
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+#left a{
+   color: #575757;
+   font-weight: bolder;
+   text-decoration: none;
+}
+#hovermenu a{
+    cursor: default;
+}
+a{
+    text-decoration: none;
+    font-weight: bolder;
+}
+    .theme  { margin: 1em 0; border-collapse: collapse; width: 100%; }
+    .theme  td, .theme th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
+    .theme  th { border: 1px solid #4297d7; background: #5c9ccc url(/css/redmond/images/ui-bg_gloss-wave_55_5c9ccc_500x100.png) 50% 50% repeat-x; color: #ffffff; font-weight: bold; }
+    .theme a{text-decoration: none;color: #4297d7;font-weight: bolder}
+    

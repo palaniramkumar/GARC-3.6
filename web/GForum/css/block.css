@@ -1,0 +1,32 @@
+/* 
+    Document   : block
+    Created on : Apr 8, 2009, 4:29:49 AM
+    Author     : Ramkumar
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+#pane-list {
+	margin: auto;
+	padding: 0;
+	list-style: none;
+	padding-top:20px;
+}
+#pane-list li {
+	/*background:  #cccccc;*/
+	padding: 5px 10px 5px;
+	border-top: solid 1px #c4df9b;
+	cursor: pointer;
+	margin-top:5px;
+	border-style:solid;
+	border-color:#0c6a8a;
+	border-width:thin;
+}
+#pane-list li:hover {
+	background:  #e5f0f4;
+}
