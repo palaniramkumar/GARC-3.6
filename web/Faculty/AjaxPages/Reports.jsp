@@ -642,8 +642,8 @@ String monthsubstr="";
 int t=0;
 String outTxt="Over All";
 if(!(request.getParameter("from").equals("") && request.getParameter("to").equals(""))){
-    monthsubstr=" and `date` BETWEEN STR_TO_DATE('"+request.getParameter("from")+"','%d/%m/%Y') AND STR_TO_DATE('"+request.getParameter("from")+"','%d/%m/%Y') ";
-    outTxt="Between "+request.getParameter("from") + "& "+request.getParameter("to");
+    monthsubstr=" and `date` BETWEEN STR_TO_DATE('"+request.getParameter("from")+"','%d/%m/%Y') AND STR_TO_DATE('"+request.getParameter("to")+"','%d/%m/%Y') ";
+    outTxt="Between "+request.getParameter("from") + " & "+request.getParameter("to");
 }
 
 String sql="select a.subject_id,count(distinct(concat(date,hour))) from assign_staff a left join attendance at "+
@@ -1088,21 +1088,7 @@ ResultSet rs=statement.executeQuery(sql);
         
         
             From Date :  <input type="text" id="from_cum_date1" value=""> To Date:  <input type="text" id="to_cum_date1" value=""> <button onclick="cumulativeAttendance()">Filter</button> 
-            <option value="0">Overall</option>
-            <option value="1">January</option>
-            <option value="2">February</option>
-            <option value="3">March</option>
-            <option value="4">April</option>
-            <option value="5">May</option>
-            <option value="6">June</option>
-            <option value="7">July</option>
-            <option value="8">August</option>
-            <option value="9">September</option>
-            <option value="10">October</option>
-            <option value="11">November</option>
-            <option value="12">December</option>
-
-       
+         
 <button onclick="exportXL('tabs-1')">Export</button> 
     </p>
 

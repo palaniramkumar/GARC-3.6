@@ -60,7 +60,7 @@
             "from assign_staff a left join attendance at "+
             " on at.subject_id=a.subject_id and at.staff_id=a.staff_id and a.section=at.section  and at.student_id='"+session.getAttribute("userid")+"' , "+
             " subject s where s.subject_id=a.subject_id  and a.semester="+session.getAttribute("semester")+" group by a.subject_id";
-        //out.print(sql);
+        out.print(sql);
         rs=st.executeQuery(sql);
 
 %>
